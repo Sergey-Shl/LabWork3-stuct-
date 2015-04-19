@@ -1,59 +1,33 @@
+/*Main.cpp*/
 #include <iostream>
 #include <string>
-#include <vector>
+#include "store.h"
+
 using namespace std;
 
-struct db_store
+int main(int argc, char *argv[])
 {
-	int store_num;
-	std::string item_name;
-	int item_id;
-	int item_price;
-	int item_count;
-};
 
-int main()
-{
-	vector<db_store> items;
-	db_store item;
-	item.store_num = 241;
-	item.item_name = "Item ";
-	item.item_id = 1;
-	item.item_price = 199;
-	item.item_count = 4;
-	items.push_back(item);
-	char c;
-	do {
-		cout << "Store num: ";
-		cin >> item.store_num;
-		cout << "Item name: ";
-		cin >> item.item_name;
-		cout << "Item id: ";
-		cin >> item.item_id;
-		cout << "Item price: ";
-		cin >> item.item_price;
-		cout << "Item count: ";
-		cin >> item.item_count;
-		cout << "Do you want to add new item? (y/n)" << endl;
-		items.push_back(item);
-		cin >> c;
-	} while (c == 'y'); 
-
-	cout << "Do ypu want to see all items? (y/n)" << endl;
-	cin >> c;
-	if (c == 'y')
+	if (argc > 1)
 	{
-		for (int i = 0; i < items.size(); i++)
+		if (argv[1] == "-h")
 		{
-			cout << "Item " << i + 1 << endl;
-			cout << "Store num: " << items[i].store_num << endl;
-			cout << "Item name: " << items[i].item_name << endl;
-			cout << "Item id: " << items[i].item_id << endl;
-			cout << "Item price: " << items[i].item_price << endl;
-			cout << "Item count: " << items[i].item_count << endl;
+			cout << "It is help" << endl;
+			system("pause");
+			return 0;
 		}
 	}
-	items.clear();
+
+
+	db_store Shop(77, "Item 4", 0, 99, 2, 4);
+	cout << "Count: " << Shop.getCount() << endl;
+	cout << "Item id: " << Shop.getItem_id() << endl;
+	cout << "Item name: " << Shop.getItem_name() << endl;
+	cout << "Item price: " << Shop.getProice() << endl;
+	cout << "Item quanity: " << Shop.getQuantity() << endl;
+	cout << "Store name: " << Shop.getStore_num() << endl;
+
 	system("pause");
+
 	return 0;
 }
